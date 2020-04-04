@@ -22,7 +22,7 @@ const INITIAL_STATE: SurveyStore = {
   epilogue: SURVEY_DEFAULT_EPILOGUE,
   thumbnail: '',
   subjects: [],
-  current: -1
+  current: -1,
 }
 const survey: Module<SurveyStore, RootState> = {
   namespaced: true,
@@ -35,7 +35,7 @@ const survey: Module<SurveyStore, RootState> = {
       } else {
         return {} as Subject
       }
-    }
+    },
   },
   mutations: {
     [UPDATE_SURVEY_UUID](state, payload: { uuid: string }) {
@@ -58,7 +58,7 @@ const survey: Module<SurveyStore, RootState> = {
     },
     [UPDATE_SURVEY_CURRENT](state, payload: { current: number }) {
       state.current = payload.current
-    }
+    },
   },
   actions: {},
 }
