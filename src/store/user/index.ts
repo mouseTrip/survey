@@ -7,6 +7,7 @@ const UPDATE_USER_SURVEYS = 'UPDATE_USER_SURVEYS'
 const INITIAL_STATE: User = {
   phone: '',
   name: '',
+  avatar: '',
   surveys: [],
 }
 const user: Module<User, RootState> = {

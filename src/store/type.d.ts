@@ -61,6 +61,7 @@ export interface Survey {
 export interface User {
   phone: string
   name: string
+  avatar: string
   surveys: Survey[]
 }
 
