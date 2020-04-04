@@ -62,3 +62,5 @@ const survey: Module<SurveyStore, RootState> = {
   },
   actions: {},
 }
+
+export default survey
