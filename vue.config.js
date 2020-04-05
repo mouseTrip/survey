@@ -4,6 +4,9 @@ const tsImportPluginFactory = require('ts-import-plugin')
 const autoprefixer = require('autoprefixer')
 const pxtoviewport = require('postcss-px-to-viewport')
 
+const MOCK_BASE_URL =
+  'http://localhost:7300/mock/5e893e08f6d6962126aae9e4/survey'
+
 module.exports = {
   outputDir: 'dist',
   publicPath: '/mobile/',
@@ -41,5 +44,13 @@ module.exports = {
         })
         return options
       })
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: MOCK_BASE_URL,
+        changeOrigin: true,
+      },
+    },
   },
 }
