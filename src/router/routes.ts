@@ -9,12 +9,12 @@ const routes: RouteConfig[] = [
       {
         path: 'mine',
         name: 'mine',
-        component: () => import('@/views/About.vue'),
+        component: () => import('@/views/Mine.vue'),
       },
       {
         path: 'more',
         name: 'more',
-        component: () => import('@/views/About.vue'),
+        component: () => import('@/views/More.vue'),
       },
     ],
   },

@@ -2,6 +2,17 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import '@/assets/iconfont/remixicon.css'
+
+import {
+  Icon,
+  NavBar,
+  Tabbar, TabbarItem,
+} from 'vant'
+Vue
+  .use(Icon)
+  .use(NavBar)
+  .use(Tabbar).use(TabbarItem)
 
 Vue.config.productionTip = false
 
