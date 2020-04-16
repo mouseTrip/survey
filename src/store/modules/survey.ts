@@ -4,7 +4,7 @@ import {
   SURVEY_DEFAULT_TITLE,
   SURVEY_DEFAULT_DESC,
   SURVEY_DEFAULT_EPILOGUE,
-} from '@/constants/common'
+} from '@/constants'
 
 const UPDATE_SURVEY_UUID = 'UPDATE_SURVEY_UUID'
 const UPDATE_SURVEY_TITLE = 'UPDATE_SURVEY_TITLE'
