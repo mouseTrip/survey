@@ -4,15 +4,10 @@ import router from './router'
 import store from './store'
 import '@/assets/iconfont/remixicon.css'
 
-import {
-  Icon,
-  NavBar,
-  Tabbar, TabbarItem,
-} from 'vant'
-Vue
-  .use(Icon)
-  .use(NavBar)
-  .use(Tabbar).use(TabbarItem)
+import { Icon, NavBar, Tabbar, TabbarItem } from 'vant'
+;[Icon, NavBar, Tabbar, TabbarItem].forEach(c => {
+  Vue.use(c)
+})
 
 Vue.config.productionTip = false
 

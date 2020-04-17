@@ -1,7 +1,9 @@
 import user from './user'
 import survey from './survey'
 
-export default {
+const modules = {
   user,
-  survey
+  survey,
 }
+
+export default modules

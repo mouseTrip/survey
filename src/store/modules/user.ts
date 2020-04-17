@@ -1,5 +1,6 @@
 import { Module } from 'vuex'
-import { RootState, User, Survey } from '../type'
+import { User, Survey } from '../type'
+import { RootState } from '../store'
 import { userApi, surveyApi } from '@/api'
 
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
@@ -77,5 +78,5 @@ const user: Module<User, RootState> = {
     },
   },
 }
-
+export type UserModule = User
 export default user

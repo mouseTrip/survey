@@ -9,5 +9,5 @@ const getSurveyList: (
 }
 
 export default {
-  getSurveyList
+  getSurveyList,
 }

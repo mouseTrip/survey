@@ -1,5 +1,6 @@
 import { Module } from 'vuex'
-import { Survey, RootState, Subject } from '../type'
+import { Survey, Subject } from '../type'
+import { RootState } from '../store'
 import {
   SURVEY_DEFAULT_TITLE,
   SURVEY_DEFAULT_DESC,
@@ -14,8 +15,8 @@ const UPDATE_SURVEY_THUMBNAIL = 'UPDATE_SURVEY_THUMBNAIL'
 const UPDATE_SURVEY_SUBJECTS = 'UPDATE_SURVEY_SUBJECTS'
 const UPDATE_SURVEY_CURRENT = 'UPDATE_SURVEY_CURRENT'
 
-type SurveyStore = Survey & { current: number }
-const INITIAL_STATE: SurveyStore = {
+export type SurveyModule = Survey & { current: number }
+const INITIAL_STATE: SurveyModule = {
   uuid: '',
   title: SURVEY_DEFAULT_TITLE,
   desc: SURVEY_DEFAULT_DESC,
@@ -24,7 +25,7 @@ const INITIAL_STATE: SurveyStore = {
   subjects: [],
   current: -1,
 }
-const survey: Module<SurveyStore, RootState> = {
+const survey: Module<SurveyModule, RootState> = {
   namespaced: true,
   state: INITIAL_STATE,
   getters: {

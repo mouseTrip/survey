@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
 let BASE_URL = ''
 switch (process.env.NODE_ENV) {
@@ -32,7 +32,7 @@ instance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     return config
   },
-  (error: any) => {
+  (error: AxiosError) => {
     console.error(error)
     return Promise.reject('请求出错')
   },
@@ -42,8 +42,8 @@ instance.interceptors.response.use(
   (res: AxiosResponse) => {
     return Promise.resolve(res.data)
   },
-  (error: any) => {
-    const { response }: { response?: AxiosResponse } = error
+  (error: AxiosError) => {
+    const { response } = error
     if (response) {
       return Promise.reject(errorHandler(response))
     } else {
