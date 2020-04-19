@@ -1,7 +1,7 @@
 <template>
   <div class="survey-card">
     <div class="survey-card__thumbnail"></div>
-    <div class="survey-card__info"></div>
+    <div class="survey-card__info">问卷标题</div>
   </div>
 </template>
 

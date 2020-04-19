@@ -13,6 +13,9 @@
   color: #2c3e50;
 }
 .page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background-color: #f4f6f9;
 }

@@ -9,9 +9,9 @@ const FETCH_USER_INFO = 'FETCH_USER_INFO'
 const FETCH_USER_SURVEYS = 'FETCH_USER_SURVEYS'
 
 const INITIAL_STATE: User = {
-  phone: '',
-  name: '',
-  avatar: '',
+  phone: '18510273321',
+  name: '硅谷红领巾',
+  avatar: 'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHndYpw06K0e60Ijo32q1ia70jfeoiaQfGNXDSTv7YIzcfhOYGibnbKPUGTUrH6xsllgWnicEArXvQLA/132',
   surveys: [],
 }
 const user: Module<User, RootState> = {
