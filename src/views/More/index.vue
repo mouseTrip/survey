@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { State, Getter } from 'vuex-class'
-import { Survey } from '../store/type'
+import { Survey } from '@/store/type'
 import { px2vw, px2vh } from '@/utils/calc'
 @Component
 export default class More extends Vue {

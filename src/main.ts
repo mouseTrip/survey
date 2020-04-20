@@ -4,8 +4,30 @@ import router from './router'
 import store from './store'
 import '@/assets/iconfont/remixicon.css'
 
-import { Icon, Image, NavBar, Tabbar, TabbarItem, Button, Cell } from 'vant'
-;[Icon, NavBar, Image, Button, Tabbar, TabbarItem, Cell].forEach(c => {
+import {
+  Icon,
+  Image,
+  NavBar,
+  Tabbar,
+  TabbarItem,
+  Button,
+  Cell,
+  Popup,
+  Field,
+  Form,
+} from 'vant'
+;[
+  Icon,
+  NavBar,
+  Image,
+  Button,
+  Tabbar,
+  TabbarItem,
+  Cell,
+  Popup,
+  Field,
+  Form,
+].forEach(c => {
   Vue.use(c)
 })
 

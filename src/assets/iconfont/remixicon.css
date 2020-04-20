@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: "remixicon";
-    src: url('remixicon.eot?t=1586077090034'); /* IE9*/
-    src: url('remixicon.eot?t=1586077090034#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url("remixicon.woff2?t=1586077090034") format("woff2"),
-    url("remixicon.woff?t=1586077090034") format("woff"),
-    url('remixicon.ttf?t=1586077090034') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('remixicon.svg?t=1586077090034#remixicon') format('svg'); /* iOS 4.1- */
+    src: url('remixicon.eot?t=1587394996888'); /* IE9*/
+    src: url('remixicon.eot?t=1587394996888#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url("remixicon.woff2?t=1587394996888") format("woff2"),
+    url("remixicon.woff?t=1587394996888") format("woff"),
+    url('remixicon.ttf?t=1587394996888') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('remixicon.svg?t=1587394996888#remixicon') format('svg'); /* iOS 4.1- */
     font-display: swap;
 }
 
@@ -41,28 +41,29 @@
 .ri-10x { font-size: 10em; }
 .ri-fw { text-align: center; width: 1.25em; }
 
-.ri-list-check:before { content: "\ee55"; }
-.ri-grid-fill:before { content: "\ed99"; }
-.ri-folder-add-fill:before { content: "\ed18"; }
-.ri-message-line:before { content: "\eed3"; }
-.ri-delete-bin-line:before { content: "\ec08"; }
-.ri-menu-line:before { content: "\eecd"; }
-.ri-pause-circle-line:before { content: "\ef54"; }
-.ri-indeterminate-circle-line:before { content: "\edfe"; }
+.ri-list-check:before { content: "\ee7b"; }
+.ri-grid-fill:before { content: "\edb7"; }
+.ri-folder-add-fill:before { content: "\ed32"; }
+.ri-message-line:before { content: "\eefd"; }
+.ri-delete-bin-line:before { content: "\ec1a"; }
+.ri-menu-line:before { content: "\eef7"; }
+.ri-pause-circle-line:before { content: "\ef82"; }
+.ri-indeterminate-circle-line:before { content: "\ee20"; }
 .ri-add-line:before { content: "\ea11"; }
-.ri-radio-button-line:before { content: "\efc3"; }
-.ri-checkbox-line:before { content: "\eb6d"; }
+.ri-radio-button-line:before { content: "\eff5"; }
+.ri-checkbox-line:before { content: "\eb7f"; }
 .ri-arrow-drop-down-fill:before { content: "\ea4d"; }
-.ri-star-line:before { content: "\f0db"; }
-.ri-file-damage-line:before { content: "\eca1"; }
-.ri-file-text-line:before { content: "\ecd5"; }
-.ri-input-method-line:before { content: "\ee03"; }
-.ri-information-line:before { content: "\ee00"; }
-.ri-contacts-line:before { content: "\ebb6"; }
-.ri-smartphone-line:before { content: "\f0ae"; }
-.ri-window-line:before { content: "\f1f2"; }
-.ri-chat-3-line:before { content: "\eb43"; }
-.ri-swap-line:before { content: "\f10d"; }
+.ri-star-line:before { content: "\f123"; }
+.ri-file-damage-line:before { content: "\ecb7"; }
+.ri-file-text-line:before { content: "\ecef"; }
+.ri-input-method-line:before { content: "\ee25"; }
+.ri-information-line:before { content: "\ee22"; }
+.ri-contacts-line:before { content: "\ebc8"; }
+.ri-smartphone-line:before { content: "\f0f4"; }
+.ri-window-line:before { content: "\f24e"; }
+.ri-chat-3-line:before { content: "\eb4b"; }
+.ri-swap-line:before { content: "\f15f"; }
 .ri-arrow-up-down-line:before { content: "\ea72"; }
-.ri-user-line:before { content: "\f19c"; }
-.ri-more-fill:before { content: "\eefe"; }
+.ri-user-line:before { content: "\f1f0"; }
+.ri-more-fill:before { content: "\ef28"; }
+.ri-play-circle-line:before { content: "\efb5"; }

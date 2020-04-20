@@ -4,17 +4,17 @@ const routes: RouteConfig[] = [
   {
     path: '/',
     redirect: '/mine',
-    component: () => import('@/components/TabbarLayout.vue'),
+    component: () => import('@/layouts/TabbarLayout.vue'),
     children: [
       {
         path: 'mine',
         name: 'mine',
-        component: () => import('@/views/Mine.vue'),
+        component: () => import('@/views/Mine/index.vue'),
       },
       {
         path: 'more',
         name: 'more',
-        component: () => import('@/views/More.vue'),
+        component: () => import('@/views/More/index.vue'),
       },
     ],
   },
@@ -26,7 +26,7 @@ const routes: RouteConfig[] = [
   {
     path: '/edit',
     name: 'edit',
-    component: () => import('@/views/About.vue'),
+    component: () => import('@/views/Edit/index.vue'),
   },
   {
     path: '/template',
