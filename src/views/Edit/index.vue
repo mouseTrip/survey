@@ -1,19 +1,17 @@
 <template>
   <div class="page editor">
     <!-- survey 预览 -->
-    <section>
-      <h4>标题与描述</h4>
+    <CommonSection title="标题与描述">
       <van-cell label="描述" center>
         <template #title>
-          <h3 class="editor__title">试标题辑</h3>
+          <h5 class="editor__title">试标题辑</h5>
         </template>
         <template>
-          <span class="editor__btn">编辑</span>
+          <span class="editor__btn" @click="handleToEdit('base')">编辑</span>
         </template>
       </van-cell>
-    </section>
-    <section class="editor__subjects">
-      <h4>问题</h4>
+    </CommonSection>
+    <CommonSection title="问题" class="editor__subjects">
       <van-cell-group>
         <van-cell
           icon-prefix="ri"
@@ -39,15 +37,17 @@
           </template>
         </van-cell>
       </van-cell-group>
-    </section>
-    <section>
-      <h4>结束语</h4>
+    </CommonSection>
+    <CommonSection title="结束语">
       <van-cell title="" label="结束语" center>
         <template>
-          <span class="editor__btn">编辑</span>
+          <span class="editor__btn" @click="handleToEdit('epilogue')">
+            编辑
+          </span>
         </template>
       </van-cell>
-    </section>
+    </CommonSection>
+
     <!-- 编辑问卷标题 -->
     <EditBase
       :visible="editting === 'base'"
@@ -72,6 +72,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import CommonSection from '@/components/CommonSection.vue'
 import EditBase from './EditBase.vue'
 import EditEpilogue from './EditEpilogue.vue'
 
@@ -79,6 +80,7 @@ type EDIT_STATUS = 'preview' | 'base' | 'epilogue' | 'subject'
 
 @Component({
   components: {
+    [CommonSection.name]: CommonSection,
     EditBase,
     EditEpilogue,
   },
@@ -103,18 +105,9 @@ export default class Edit extends Vue {
 </script>
 
 <style lang="scss" scoped>
-section {
-  margin: 0 16px;
-}
-h4 {
-  margin: 0;
-  padding: 20px 0 8px;
-  font-size: 13px;
-  color: #999;
-  font-weight: normal;
-}
 .editor {
   &__title {
+    font-size: 16px;
     margin: 0;
   }
   &__btn {

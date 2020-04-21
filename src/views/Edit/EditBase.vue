@@ -6,17 +6,15 @@
     :style="popupStyle"
   >
     <van-form @submit="handleSubmit">
-      <section>
-        <h4>标题</h4>
+      <CommonSection title="标题">
         <van-field
           v-model="title"
           :rules="[{ required: true, message: '请填写问卷标题' }]"
         />
-      </section>
-      <section>
-        <h4>问卷描述</h4>
+      </CommonSection>
+      <CommonSection title="问卷描述">
         <van-field type="textarea" rows="3" v-model="desc" />
-      </section>
+      </CommonSection>
       <div class="submit">
         <van-button @click="handleBack">返回</van-button>
         <van-button type="info" native-type="submit">保存</van-button>
@@ -28,8 +26,13 @@
 <script lang="ts">
 import { Component, Emit, Mixins } from 'vue-property-decorator'
 import { SURVEY_DEFAULT_TITLE, SURVEY_DEFAULT_DESC } from '@/constants'
+import CommonSection from '@/components/CommonSection.vue'
 import { EditMixin } from './mixin'
-@Component
+@Component({
+  components: {
+    [CommonSection.name]: CommonSection,
+  },
+})
 export default class EditBase extends Mixins(EditMixin) {
   private title = SURVEY_DEFAULT_TITLE
   private desc = SURVEY_DEFAULT_DESC

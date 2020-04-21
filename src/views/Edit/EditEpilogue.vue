@@ -6,10 +6,9 @@
     :style="popupStyle"
   >
     <van-form @submit="handleSubmit">
-      <section>
-        <h4>问卷结束语</h4>
+      <CommonSection title="问卷结束语">
         <van-field type="textarea" rows="3" v-model="epilogue" />
-      </section>
+      </CommonSection>
       <div class="submit">
         <van-button @click="handleBack">返回</van-button>
         <van-button type="info" native-type="submit">保存</van-button>
@@ -21,8 +20,13 @@
 <script lang="ts">
 import { Component, Emit, Mixins } from 'vue-property-decorator'
 import { SURVEY_DEFAULT_EPILOGUE } from '@/constants'
+import CommonSection from '@/components/CommonSection.vue'
 import { EditMixin } from './mixin'
-@Component
+@Component({
+  components: {
+    [CommonSection.name]: CommonSection,
+  },
+})
 export default class EditBase extends Mixins(EditMixin) {
   private epilogue = SURVEY_DEFAULT_EPILOGUE
   @Emit('on-submit')

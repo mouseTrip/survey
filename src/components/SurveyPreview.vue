@@ -30,7 +30,9 @@ import {
   monoPreviewPlaceholderSrc,
   colorPreviewPlaceholderSrc,
 } from '@/constants'
-@Component
+@Component({
+  name: 'SurveyPreview',
+})
 export default class SurveyPreview extends Vue {
   @Prop({ default: 'grid' }) readonly type!: 'grid' | 'cell' // 预览布局类型
   @Prop({ default: 0 }) readonly status!: 1 | 0 // 回收状态 1-正在回收 0-尚未回收
