@@ -26,7 +26,7 @@ import SurveyPreview from '@/components/SurveyPreview.vue'
 
 @Component({
   components: {
-    SurveyPreview,
+    [SurveyPreview.name]: SurveyPreview,
   },
 })
 export default class Mine extends Vue {

@@ -50,6 +50,17 @@ export type Subject =
   | SortSubject
   | AnnexSubject
 
+export type SubjectTypes =
+  | 'single'
+  | 'multiple'
+  | 'select'
+  | 'scale'
+  | 'input'
+  | 'textarea'
+  | 'description'
+  | 'sort'
+  | 'annex'
+
 export interface Survey {
   uuid: string
   title: string
