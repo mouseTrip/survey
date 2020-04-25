@@ -1,3 +1,10 @@
+/*
+ * @Author: Terry Zhang
+ * @Date: 2020-04-05 00:42:34
+ * @LastEditors: Terry Zhang
+ * @LastEditTime: 2020-04-25 10:23:04
+ * @Description: 路由表配置
+ */
 import { RouteConfig } from 'vue-router'
 
 const routes: RouteConfig[] = [
@@ -24,9 +31,14 @@ const routes: RouteConfig[] = [
     component: () => import('@/views/About.vue'),
   },
   {
-    path: '/edit',
+    path: '/edit/:status',
     name: 'edit',
     component: () => import('@/views/Edit/index.vue'),
+  },
+  {
+    path: '/edit-subject/:type',
+    name: 'edit-subject',
+    component: () => import('@/views/EditSubject/index.vue'),
   },
   {
     path: '/template',

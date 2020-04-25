@@ -1,72 +1,70 @@
 <template>
   <div class="page editor">
     <!-- survey 预览 -->
-    <CommonSection title="标题与描述">
-      <van-cell label="描述" center>
-        <template #title>
-          <h5 class="editor__title">试标题辑</h5>
-        </template>
-        <template>
-          <span class="editor__btn" @click="handleToEdit('base')">编辑</span>
-        </template>
-      </van-cell>
-    </CommonSection>
-    <CommonSection title="问题" class="editor__subjects">
-      <van-cell-group>
-        <van-cell
-          icon-prefix="ri"
-          icon="indeterminate-circle-line"
-          title="单选题"
-          center
-        >
-          <template #icon>
-            <van-icon
-              class-prefix="ri"
-              name="indeterminate-circle-line"
-              color="#de4337"
-              size="20"
-            />
+    <main v-if="editting === 'preview'">
+      <CommonSection title="标题与描述">
+        <van-cell label="描述" center>
+          <template #title>
+            <h5 class="editor__title">试标题辑</h5>
           </template>
-          <template #right-icon>
-            <van-icon
-              class-prefix="ri"
-              name="menu-line"
-              color="#a9a9a9"
-              size="20"
-            />
+          <template>
+            <span class="editor__btn" @click="handleToEdit('base')">编辑</span>
           </template>
         </van-cell>
-      </van-cell-group>
-    </CommonSection>
-    <CommonSection title="结束语">
-      <van-cell title="" label="结束语" center>
-        <template>
-          <span class="editor__btn" @click="handleToEdit('epilogue')">
-            编辑
-          </span>
-        </template>
-      </van-cell>
-    </CommonSection>
+      </CommonSection>
+      <CommonSection title="问题" class="editor__subjects">
+        <van-cell-group>
+          <van-cell
+            icon-prefix="ri"
+            icon="indeterminate-circle-line"
+            title="单选题"
+            center
+          >
+            <template #icon>
+              <van-icon
+                class-prefix="ri"
+                name="indeterminate-circle-line"
+                color="#de4337"
+                size="20"
+              />
+            </template>
+            <template #right-icon>
+              <van-icon
+                class-prefix="ri"
+                name="menu-line"
+                color="#a9a9a9"
+                size="20"
+              />
+            </template>
+          </van-cell>
+        </van-cell-group>
+      </CommonSection>
+      <CommonSection title="结束语">
+        <van-cell title="" label="结束语" center>
+          <template>
+            <span class="editor__btn" @click="handleToEdit('epilogue')">
+              编辑
+            </span>
+          </template>
+        </van-cell>
+      </CommonSection>
+      <div class="editor__action">
+        <van-button type="info" plain>设置</van-button>
+        <van-button type="info" icon-prefix="ri" icon="play-circle-line">
+          开始回收
+        </van-button>
+      </div>
+    </main>
 
     <!-- 编辑问卷标题 -->
-    <EditBase
-      :visible="editting === 'base'"
-      @on-submit="handleBaseEdited"
-      @on-back="handleBack"
-    />
+    <section v-if="editting === 'base'">
+      <EditBase />
+    </section>
     <!-- 编辑问题 -->
     <!-- 编辑结束语 -->
-    <EditEpilogue
-      :visible="editting === 'epilogue'"
-      @on-submit="handleEpilogueEdited"
-      @on-back="handleBack"
-    />
-    <div class="editor__action">
-      <van-button type="info" plain>设置</van-button>
-      <van-button type="info" icon-prefix="ri" icon="play-circle-line">
-        开始回收
-      </van-button>
-    </div>
+    <section v-if="editting === 'epilogue'">
+      <EditEpilogue />
+    </section>
   </div>
 </template>
 
@@ -88,7 +86,7 @@ type EDIT_STATUS = 'preview' | 'base' | 'epilogue' | 'subject'
 export default class Edit extends Vue {
   private editting: EDIT_STATUS = 'preview'
   handleToEdit(status: EDIT_STATUS): void {
-    this.editting = status
+    this.$router.push({ path: `/edit/${status}` })
   }
   handleBaseEdited({ title, desc }: { title: string; desc: string }): void {
     this.handleBack()
@@ -100,6 +98,13 @@ export default class Edit extends Vue {
   }
   handleBack() {
     this.editting = 'preview'
+  }
+  initData() {
+    console.log(this.$route.params)
+    this.editting = this.$route.params.status as EDIT_STATUS
+  }
+  created() {
+    this.initData()
   }
 }
 </script>

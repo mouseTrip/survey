@@ -1,14 +1,13 @@
+/*
+ * @Author: Terry Zhang
+ * @Date: 2020-04-20 22:39:22
+ * @LastEditors: Terry Zhang
+ * @LastEditTime: 2020-04-25 10:17:27
+ * @Description: 编辑模块mixin
+ */
 import { Vue, Prop, Component, Emit } from 'vue-property-decorator'
 @Component
 export class EditMixin extends Vue {
-  @Prop({ default: false }) readonly visible!: boolean
-  get popupStyle() {
-    return {
-      width: '100vw',
-      minHeight: '100vh',
-      backgroundColor: '#F3F5F9',
-    }
-  }
   @Emit('on-back')
   handleBack() {}
 }

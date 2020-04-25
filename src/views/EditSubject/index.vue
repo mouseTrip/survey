@@ -3,13 +3,13 @@
     <van-form>
       <CommonSection title="标题">
         <van-field
-          v-model="title"
+          v-model="form.title"
           :rules="[{ required: true, message: '请填写问卷标题' }]"
         />
       </CommonSection>
-      <CommonSection v-if="isOptionSubject">
+      <CommonSection title="选项" v-if="isOptionSubject">
         <van-cell
-          v-for="(option, index) in form.option"
+          v-for="(option, index) in form.options"
           :key="`option_${index}`"
           icon-prefix="ri"
           icon="indeterminate-circle-line"
@@ -23,7 +23,10 @@
               size="20"
             />
           </template>
-          <van-field v-model="form.options[index]" />
+          <van-field
+            :style="{ padding: '0 16px' }"
+            v-model="form.options[index]"
+          />
           <template #right-icon>
             <van-icon
               class-prefix="ri"
@@ -67,11 +70,9 @@
             :key="config"
             center
             title="最多可选"
-          >
-            <template #right-icon>
-              <van-switch v-model="form.showResult" size="24" />
-            </template>
-          </van-cell>
+            :value="limitStr"
+            is-link
+          />
           <van-cell
             v-else-if="config === 'scaleType'"
             :key="config"
@@ -112,19 +113,20 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
 import CommonSection from '@/components/CommonSection.vue'
 import { SubjectTypes } from '@/store/type'
 import settingConfig from './config'
 @Component({
+  name: 'EditSubject',
   components: {
     [CommonSection.name]: CommonSection,
   },
 })
 export default class EditSubject extends Vue {
-  @Prop({ required: true }) readonly type!: SubjectTypes
+  // private type = null as SubjectTypes
   private form = {
-    type: '',
+    type: 'single' as SubjectTypes,
     title: '',
     isRequired: true,
     randomOpt: false,
@@ -134,10 +136,13 @@ export default class EditSubject extends Vue {
     range: 5,
     limitRow: 5,
     validate: /[\s\S]+/g,
-    options: [],
+    options: ['选项'],
   }
   get settingConfig() {
-    return settingConfig[this.type]
+    return settingConfig[this.form.type]
+  }
+  get limitStr() {
+    return this.form.limit === Infinity ? '不限' : String(this.form.limit)
   }
   get typeName() {
     const nameMap: { [key in SubjectTypes]: string } = {
@@ -151,7 +156,7 @@ export default class EditSubject extends Vue {
       sort: '排序题',
       annex: '附件题',
     }
-    return nameMap[this.type]
+    return nameMap[this.form.type]
   }
   get scaleTypeName() {
     const nameMap: { [key: string]: string } = {
@@ -163,16 +168,22 @@ export default class EditSubject extends Vue {
     }
     return nameMap[this.form.scaleType]
   }
-  get validateTypeName() {
-    // const regMap = new Map<RegExp, string>([
-    //   [/\s\S/g, '不限'],
-    //   [/\d+/g, '数字'],
-    //   [/[1-2][0-9][0-9][0-9]-/, ''],
-    // ])
-    return this.form.validate
-  }
+  // get validateTypeName() {
+  //   // const regMap = new Map<RegExp, string>([
+  //   //   [/\s\S/g, '不限'],
+  //   //   [/\d+/g, '数字'],
+  //   //   [/[1-2][0-9][0-9][0-9]-/, ''],
+  //   // ])
+  //   return this.form.validate
+  // }
   get isOptionSubject() {
-    return ['single', 'multiple', 'select', 'sort'].includes(this.type)
+    console.log(
+      ['single', 'multiple', 'select', 'sort'].includes(this.form.type),
+    )
+    return ['single', 'multiple', 'select', 'sort'].includes(this.form.type)
+  }
+  mounted() {
+    this.form.type = this.$route.params.type as SubjectTypes
   }
 }
 </script>
