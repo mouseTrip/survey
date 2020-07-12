@@ -1,4 +1,4 @@
-import { RootState } from './store'
+import { RootState } from './type'
 export default {
   phone: (store: RootState) => store.user.phone,
   avatar: (store: RootState) => store.user.avatar,
