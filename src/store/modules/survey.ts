@@ -1,61 +1,67 @@
+/*
+ * @Author: Terry Zhang
+ * @Date: 2020-04-05 16:06:35
+ * @LastEditors: Terry Zhang
+ * @LastEditTime: 2020-07-12 17:49:55
+ * @Description:
+ */
+
 import { Module } from 'vuex'
-import { Survey, Subject } from '../type'
-import { RootState } from '../store'
+import { SurveyPreview, SurveyConfig, SubjectConfig } from '@/types/survey'
+import { RootState } from '../type'
 import {
   SURVEY_DEFAULT_TITLE,
   SURVEY_DEFAULT_DESC,
   SURVEY_DEFAULT_EPILOGUE,
 } from '@/constants'
 
-const UPDATE_SURVEY_UUID = 'UPDATE_SURVEY_UUID'
-const UPDATE_SURVEY_TITLE = 'UPDATE_SURVEY_TITLE'
-const UPDATE_SURVEY_DESC = 'UPDATE_SURVEY_DESC'
-const UPDATE_SURVEY_EPILOGUE = 'UPDATE_SURVEY_EPILOGUE'
-const UPDATE_SURVEY_THUMBNAIL = 'UPDATE_SURVEY_THUMBNAIL'
-const UPDATE_SURVEY_SUBJECTS = 'UPDATE_SURVEY_SUBJECTS'
+const UPDATE_USER_SURVEYS = 'UPDATE_USER_SURVEYS'
+const UPDATE_EDITTING_SURVEY = 'UPDATE_EDITTING_SURVEY'
 const UPDATE_SURVEY_CURRENT = 'UPDATE_SURVEY_CURRENT'
 
-export type SurveyModule = Survey & { current: number }
+export type SurveyModule = {
+  userSurveys: SurveyPreview[]
+  edittingSurvey: SurveyConfig
+  current: number
+}
 const INITIAL_STATE: SurveyModule = {
-  uuid: '',
-  title: SURVEY_DEFAULT_TITLE,
-  desc: SURVEY_DEFAULT_DESC,
-  epilogue: SURVEY_DEFAULT_EPILOGUE,
-  thumbnail: '',
-  subjects: [],
+  userSurveys: [],
+  edittingSurvey: {
+    sid: '',
+    title: '',
+    desc: '',
+    epilogue: '',
+    thumbnail: '',
+    subjects: [],
+    status: 0,
+  },
   current: -1,
 }
 const survey: Module<SurveyModule, RootState> = {
   namespaced: true,
   state: INITIAL_STATE,
   getters: {
-    currentSubject(state): Subject {
-      const { current, subjects } = state
+    currentSubject(state): SubjectConfig {
+      const {
+        current,
+        edittingSurvey: { subjects },
+      } = state
       if (current >= 0 && subjects.length > 0) {
         return subjects[current]
       } else {
-        return {} as Subject
+        return {} as SubjectConfig
       }
     },
   },
   mutations: {
-    [UPDATE_SURVEY_UUID](state, payload: { uuid: string }) {
-      state.uuid = payload.uuid
+    [UPDATE_USER_SURVEYS](state, payload = { surveys: [] as SurveyPreview[] }) {
+      state.userSurveys = payload.surveys
     },
-    [UPDATE_SURVEY_TITLE](state, payload: { title: string }) {
-      state.title = payload.title
-    },
-    [UPDATE_SURVEY_DESC](state, payload: { desc: string }) {
-      state.desc = payload.desc
-    },
-    [UPDATE_SURVEY_EPILOGUE](state, payload: { epilogue: string }) {
-      state.epilogue = payload.epilogue
-    },
-    [UPDATE_SURVEY_THUMBNAIL](state, payload: { thumbnail: string }) {
-      state.thumbnail = payload.thumbnail
-    },
-    [UPDATE_SURVEY_SUBJECTS](state, payload: { subjects: Subject[] }) {
-      state.subjects = payload.subjects
+    [UPDATE_EDITTING_SURVEY](
+      state,
+      payload: SurveyConfig = INITIAL_STATE.edittingSurvey,
+    ) {
+      state.edittingSurvey = { ...payload }
     },
     [UPDATE_SURVEY_CURRENT](state, payload: { current: number }) {
       state.current = payload.current

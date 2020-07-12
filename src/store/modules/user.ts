@@ -1,18 +1,16 @@
 import { Module } from 'vuex'
-import { User, Survey } from '../type'
-import { RootState } from '../store'
-import { userApi, surveyApi } from '@/api'
+import { User } from '@/types/user'
+import { RootState } from '../type'
+import { userApi } from '@/api'
 
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
-const UPDATE_USER_SURVEYS = 'UPDATE_USER_SURVEYS'
 const FETCH_USER_INFO = 'FETCH_USER_INFO'
-const FETCH_USER_SURVEYS = 'FETCH_USER_SURVEYS'
 
 const INITIAL_STATE: User = {
+  uid: '18510273321',
   phone: '18510273321',
-  name: '硅谷红领巾',
+  name: '测试用户',
   avatar: 'http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83epHndYpw06K0e60Ijo32q1ia70jfeoiaQfGNXDSTv7YIzcfhOYGibnbKPUGTUrH6xsllgWnicEArXvQLA/132',
-  surveys: [],
 }
 const user: Module<User, RootState> = {
   namespaced: true,
@@ -27,9 +25,6 @@ const user: Module<User, RootState> = {
       state.name = payload.name || payload.phone
       state.avatar = payload.avatar
     },
-    [UPDATE_USER_SURVEYS](state, payload: { surveys: Survey[] }) {
-      state.surveys = payload.surveys
-    },
   },
   actions: {
     async [FETCH_USER_INFO]({ commit }, payload: { phone: string }) {
@@ -42,31 +37,6 @@ const user: Module<User, RootState> = {
             phone: data.phone || '18510273321',
             name: data.name || '',
             avatar: data.avatar || '',
-          })
-          return Promise.resolve(data)
-        } else {
-          return Promise.reject(msg)
-        }
-      } catch (e) {
-        console.error(e)
-      }
-    },
-    async [FETCH_USER_SURVEYS](
-      { commit },
-      payload: {
-        phone: string
-      },
-    ) {
-      try {
-        const { ret, data, msg } = await surveyApi.getSurveyList({
-          phone: payload.phone || '18510273321',
-        })
-        if (ret === 0) {
-          commit(UPDATE_USER_SURVEYS, {
-            surveys: data.list.map(item => ({
-              ...item,
-              subjects: item.subjects ? JSON.parse(item.subjects) : '',
-            })),
           })
           return Promise.resolve(data)
         } else {

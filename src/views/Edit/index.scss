@@ -5,13 +5,4 @@
   box-sizing: border-box;
   width: 100%;
   padding: 15px;
-  .van-button {
-    &:first-of-type {
-      width: 30%;
-      margin-right: 5%;
-    }
-    &:last-of-type {
-      width: 65%;
-    }
-  }
 }
